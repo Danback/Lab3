@@ -101,8 +101,7 @@ public class HelloApplication extends Application {
             for (Node node : gridPane.getChildren()) {
                 if (GridPane.getRowIndex(node) != null && GridPane.getRowIndex(node) == row
                         && GridPane.getColumnIndex(node) != null && GridPane.getColumnIndex(node) == col) {
-                    if (node instanceof Button) {
-                        Button button = (Button) node;
+                    if (node instanceof Button button) {
                         button.setText("O");
                     }
                 }
@@ -137,11 +136,7 @@ public class HelloApplication extends Application {
             return true;
         }
 
-        if (board[0][2] == player && board[1][1] == player && board[2][0] == player) {
-            return true;
-        }
-
-        return false;
+        return board[0][2] == player && board[1][1] == player && board[2][0] == player;
     }
 
 
@@ -186,8 +181,7 @@ public class HelloApplication extends Application {
         gameInProgress = true;
         // Reset the UI to clear the board
         gridPane.getChildren().forEach(node -> {
-            if (node instanceof Button) {
-                Button button = (Button) node;
+            if (node instanceof Button button) {
                 button.setText("");
             }
         });
