@@ -30,5 +30,6 @@ public class HelloApplicationTest {
     public void testRoundCompletion() {
         // Test whether a round is completed when the game conditions are met
         // You can simulate game conditions to check if the round is completed
+        // For example, simulate a win or draw and check if the round completion is detected.
     }
 }

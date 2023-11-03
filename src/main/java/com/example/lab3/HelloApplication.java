@@ -117,7 +117,6 @@ public class HelloApplication extends Application {
     }
 
 
-
     private boolean checkForWin(char player) {
         // Check rows
         for (int row = 0; row < 3; row++) {
@@ -180,7 +179,6 @@ public class HelloApplication extends Application {
     }
 
 
-
     private void resetGame() {
         board = new char[3][3];
         xTurn = true;
@@ -194,5 +192,20 @@ public class HelloApplication extends Application {
             }
         });
     }
-}
+    public boolean isValidMove(int row, int col) {
+        return gameInProgress && board[row][col] == 0 && ((xTurn && board[row][col] == 0) || (!xTurn && board[row][col] == 0));
+    }
 
+    public void makeMove(int row, int col) {
+        if (isValidMove(row, col)) {
+            if (xTurn) {
+                board[row][col] = 'X';
+            } else {
+                board[row][col] = 'O';
+            }
+            xTurn = !xTurn;
+            userHasMoved = true;
+        }
+    }
+
+}
