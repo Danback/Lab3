@@ -141,9 +141,17 @@ public class HelloApplication extends Application {
 
 
     private boolean checkForDraw() {
-        // Implement logic to check for a draw
-        return false;
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                if (board[row][col] == 0) {
+                    return false; // There is an empty cell, so the game is not a draw yet
+                }
+            }
+        }
+        // All cells are filled, and there is no winner, so it's a draw
+        return true;
     }
+
 
     private void endGame() {
         gameInProgress = false;
