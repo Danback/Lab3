@@ -52,4 +52,28 @@ public class TicTacToeModelTest {
         assertTrue(game.checkForDraw());
     }
 
+    @Test
+    public void testWinConditionForO() {
+        game.resetGame();
+
+        // Simulate 'O' making a winning move
+        game.makeMove(0, 0, 'O');
+        game.makeMove(1, 0, 'O');
+        game.makeMove(2, 0, 'O');
+
+        assertTrue("Game should be won by O", game.checkForWin('O'));
+    }
+
+    @Test
+    public void testGameEndsAfterWinForO() {
+        game.resetGame();
+
+        // Simulate 'O' making a winning move
+        game.makeMove(0, 0, 'O');
+        game.makeMove(1, 0, 'O');
+        game.makeMove(2, 0, 'O');
+
+        assertFalse("Game should be over after a win", game.isGameInProgress());
+    }
+
 }
