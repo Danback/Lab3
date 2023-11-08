@@ -52,7 +52,6 @@ public class HelloController {
     }
 
 
-
     private void gameEnd(String message) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Game Over");

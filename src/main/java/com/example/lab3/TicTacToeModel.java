@@ -16,17 +16,26 @@ public class TicTacToeModel {
         resetGame();
     }
 
+    public boolean isValidMove(int row, int col) {
+        return board[row][col] == '\u0000' && gameInProgress;
+    }
+
     public void makeMove(int row, int col, char player) {
         if (gameInProgress && board[row][col] == '\u0000') {
             board[row][col] = player;
+            // Toggle turns only if it's a player's move, not if the computer is making the move
+            if (player == 'X') {
+                xTurn = false;
+            } else if (player == 'O') {
+                xTurn = true;
+            }
             checkGameStatus();
         }
     }
 
 
-
     public void makeComputerMove() {
-        if (!gameInProgress || !xTurn) {
+        if (!gameInProgress || xTurn) { // Only make a computer move if it's not X's turn
             return;
         }
 
@@ -41,24 +50,28 @@ public class TicTacToeModel {
 
         if (!emptyCells.isEmpty()) {
             int[] move = emptyCells.get(random.nextInt(emptyCells.size()));
-            makeMove(move[0], move[1], 'O');
+            board[move[0]][move[1]] = 'O';
+            xTurn = !xTurn; // Toggle the turn back to X
+            checkGameStatus();
         }
     }
 
     private void checkGameStatus() {
-        if (checkForWin('X')) {
+        char currentPlayer = xTurn ? 'O' : 'X';
+        if (checkForWin(currentPlayer)) {
             gameInProgress = false;
-            playerXScore++;
-        } else if (checkForWin('O')) {
-            gameInProgress = false;
-            playerOScore++;
+            if (currentPlayer == 'X') {
+                playerXScore++;
+            } else {
+                playerOScore++;
+            }
         } else if (checkForDraw()) {
             gameInProgress = false;
         }
     }
 
-
     public boolean checkForWin(char player) {
+        // Horizontal, vertical, and diagonal checks
         for (int i = 0; i < 3; i++) {
             if (board[i][0] == player && board[i][1] == player && board[i][2] == player) {
                 return true;
