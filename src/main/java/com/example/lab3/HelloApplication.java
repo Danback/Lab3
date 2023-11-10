@@ -8,24 +8,23 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        // Create the controller, which in turn creates the model and the view
+        // Skapa kontrollern
         HelloController controller = new HelloController();
 
-        // The scene is created with the view from the controller
+        // Skapa spelscenen? med vyn från kontrollern.
         Scene scene = new Scene(controller.getView().getGridPane(), 300, 300);
 
-        // Set the title of the window (stage)
+        // Sätt titeln på fönstret (scenen).
         primaryStage.setTitle("Tic Tac Toe");
 
-        // Place the scene in the stage
+        // Placera scenen i fönstret (stadiet).
         primaryStage.setScene(scene);
 
-        // Show the stage to the user
+        // Visa fönstret för användaren.
         primaryStage.show();
     }
 
     public static void main(String[] args) {
-        // Launch the application
         launch(args);
     }
 }
